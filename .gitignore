@@ -1,0 +1,16 @@
+# Godot 4 generated files
+.godot/
+android/
+ios/
+*.translation
+
+# Exported builds
+build/
+export/
+*.pck
+*.zip
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.tmp

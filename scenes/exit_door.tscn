@@ -1,0 +1,73 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/exit_door.gd" id="1_exit"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_frame"]
+size = Vector3(3, 2.7, 0.32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_door"]
+size = Vector3(2.5, 2.3, 0.12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sign"]
+size = Vector3(1.9, 0.42, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_frame"]
+albedo_color = Color(0.1, 0.11, 0.1, 1)
+metallic = 0.75
+roughness = 0.48
+
+[sub_resource type="StandardMaterial3D" id="Mat_door"]
+albedo_color = Color(0.13, 0.21, 0.15, 1)
+metallic = 0.5
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="Mat_sign"]
+albedo_color = Color(0.55, 0.06, 0.05, 1)
+emission_enabled = true
+emission = Color(1, 0.12, 0.06, 1)
+emission_energy_multiplier = 2.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(3, 2.7, 0.4)
+
+[node name="ExitDoor" type="StaticBody3D"]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_exit")
+
+[node name="Frame" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+mesh = SubResource("BoxMesh_frame")
+material_override = SubResource("Mat_frame")
+
+[node name="Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12, 0.19)
+mesh = SubResource("BoxMesh_door")
+material_override = SubResource("Mat_door")
+
+[node name="Sign" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66, 0.1)
+mesh = SubResource("BoxMesh_sign")
+material_override = SubResource("Mat_sign")
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66, 0.17)
+modulate = Color(2.4, 0.25, 0.18, 1)
+outline_modulate = Color(0.15, 0.01, 0.01, 1)
+text = "ВЫХОД"
+font_size = 96
+outline_size = 18
+pixel_size = 0.0042
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0.7)
+light_color = Color(1, 0.16, 0.1, 1)
+light_energy = 1.6
+light_specular = 0.2
+omni_range = 5.5
+omni_attenuation = 1.7
+shadow_enabled = true
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+shape = SubResource("BoxShape3D_door")

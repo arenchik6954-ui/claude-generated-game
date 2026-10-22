@@ -498,7 +498,7 @@ func _build_note() -> void:
 	note_panel.anchor_bottom = 1.0
 	note_panel.offset_left = -330.0
 	note_panel.offset_right = 330.0
-	note_panel.offset_top = -330.0
+	note_panel.offset_top = -352.0
 	note_panel.offset_bottom = -160.0
 	note_panel.visible = false
 	add_child(note_panel)

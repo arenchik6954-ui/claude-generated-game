@@ -4,6 +4,7 @@ extends StaticBody3D
 signal used
 
 var unlocked := false
+var opened := false
 var _t := 0.0
 
 @onready var sign_light: OmniLight3D = $Light
@@ -37,7 +38,7 @@ func _apply_visual() -> void:
 
 
 func _process(delta: float) -> void:
-	if not unlocked:
+	if not unlocked or opened:
 		return
 	_t += delta
 	sign_light.light_energy = 1.6 + sin(_t * 2.6) * 0.7
@@ -54,8 +55,14 @@ func interact(player: Node) -> void:
 		if player != null and player.has_method("add_shake"):
 			player.call("add_shake", 0.02)
 		return
+	opened = true
 	AudioBank.play_3d("door", get_parent(), global_position, -2.0, 0.9, 40.0)
 	AudioBank.play_3d("chime", get_parent(), global_position, -4.0, 1.0, 40.0)
+	if door != null:
+		var tween := create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(door, "position:y", 2.55, 0.5).set_ease(Tween.EASE_IN)
+		tween.tween_property(sign_light, "light_energy", 6.0, 0.4)
 	used.emit()
 
 

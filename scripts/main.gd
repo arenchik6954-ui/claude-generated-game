@@ -132,6 +132,7 @@ func _schedule_entity_activation(delay: float) -> void:
 		return
 	entity.activate()
 	AudioBank.play("stinger", -8.0, 0.8)
+	ui.flash_static(0.45, 1.4)
 	ui.toast("ЧТО-ТО ПРОСНУЛОСЬ В КОРИДОРАХ")
 
 
@@ -342,8 +343,6 @@ func _setup_environment() -> void:
 	env.fog_light_color = Color(0.34, 0.30, 0.16)
 	env.fog_light_energy = 0.9
 	env.fog_density = 0.030
-	env.fog_aerial_perspective = 0.0
-	env.fog_sky_affect = 0.0
 	env.volumetric_fog_enabled = true
 	env.volumetric_fog_density = 0.016
 	env.volumetric_fog_albedo = Color(0.78, 0.71, 0.38)

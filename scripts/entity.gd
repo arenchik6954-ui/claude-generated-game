@@ -180,7 +180,8 @@ func _move(delta: float) -> void:
 	var speed := _current_speed()
 
 	# вплотную — идёт напрямую на игрока, а не по центрам клеток
-	if state == State.HUNT and global_position.distance_to(player.global_position) < 5.5:
+	if state == State.HUNT and global_position.distance_to(player.global_position) < 5.5 \
+			and maze.has_line_of_sight(global_position + Vector3.UP, player.global_position):
 		var chase := player.global_position - global_position
 		chase.y = 0.0
 		if chase.length() > 0.05:

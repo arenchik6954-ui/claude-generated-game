@@ -62,6 +62,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if not active:
 		velocity = Vector3.ZERO
+		_update_fear(delta)
+		_update_camera(delta)
 		return
 
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
